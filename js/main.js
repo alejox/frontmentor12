@@ -1,58 +1,92 @@
-const firstName = document.getElementById('firstNameInput');
-const lastName = document.getElementById('lastNameInput');
-const emailInput = document.getElementById('emailInput');
-const pass = document.getElementById('passInput');
+//variables
 
-const firstNameError = document.querySelector('#firstNameError');
-const lastNameError = document.querySelector('#lastNameError');
-const emailError = document.querySelector('#emailError');
-const passError = document.querySelector('#passError');
-
+const nameInput = document.querySelector('#firstNameInput');
+const lastNameInput = document.querySelector('#lastNameInput');
+const emailInput = document.querySelector('#emailInput');
+const pass = document.querySelector('#passInput');
 const button = document.querySelector('#submit');
+
+//Errors variables
+
+const nameError = document.getElementById('firstNameError');
+const lastNameError = document.getElementById('lastNameError');
+const emailError = document.getElementById('emailError');
+const passError = document.getElementById('passError');
+
+//Events
 
 button.addEventListener('click', (e) => {
   e.preventDefault();
-  validateEmpty(
-    firstName.value,
-    firstName,
-    firstNameError,
+  validateInput(
+    nameInput.value,
+    nameInput,
+    nameError,
     'First Name cannot be empty'
   );
-  validateEmpty(
-    lastName.value,
-    lastName,
+  validateInput(
+    lastNameInput.value,
+    lastNameInput,
     lastNameError,
     'Last Name cannot be empty'
   );
-  validateEmail(emailInput.value, emailInput, emailError);
-  validateEmpty(pass.value, pass, passError, 'Password cannot be empty');
+  validateEmail(
+    emailInput.value,
+    emailInput,
+    emailError,
+    'Looks like this not an email'
+  );
+  validatePass(
+    pass.value,
+    pass,
+    passError,
+    `- at least 8 characters
+- must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
+- Can contain special characters`
+  );
 });
 
-function validateEmail(valueInput, divInput, divError) {
+//Functions
+
+function validateInput(valueInput, divInput, errorInput, error) {
+  if (valueInput == 0) {
+    showError(divInput, errorInput, error);
+  } else {
+    hideError(divInput, errorInput);
+  }
+}
+
+function validateEmail(valueInput, divInput, errorInput, error) {
   const regExp =
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
   if (regExp.test(valueInput)) {
-    hideError(divInput, divError);
+    divInput.style.border = '1px solid var(--Grayish-Blue)';
+    errorInput.innerHTML = '';
   } else {
-    showError(divInput, divError, 'Looks like this not an email');
+    divInput.style.border = '1px solid var(--Red)';
+    errorInput.innerHTML = `<img class="icon-error" src="images/icon-error.svg" alt="" />
+            <p class="error">${error}</p>`;
   }
 }
 
-function validateEmpty(valueInput, divInput, divError, error) {
-  if (valueInput.length == 0) {
-    showError(divInput, divError, error);
+function validatePass(valueInput, divInput, errorInput, error) {
+  const regExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+  if (regExp.test(valueInput)) {
+    divInput.style.border = '1px solid var(--Grayish-Blue)';
+    errorInput.innerHTML = '';
   } else {
-    hideError(divInput, divError);
+    divInput.style.border = '1px solid var(--Red)';
+    errorInput.innerHTML = `<img class="icon-error" src="images/icon-error.svg" alt="" />
+            <p class="error">${error}</p>`;
   }
 }
 
-function showError(divInput, divError, error) {
+function showError(divInput, errorInput, error) {
   divInput.style.border = '1px solid var(--Red)';
-  divError.innerHTML = `<img class="icon-error" src="images/icon-error.svg" alt="" />
+  errorInput.innerHTML = `<img class="icon-error" src="images/icon-error.svg" alt="" />
             <p class="error">${error}</p>`;
 }
 
-function hideError(divInput, divError) {
+function hideError(divInput, errorInput) {
   divInput.style.border = '1px solid var(--Grayish-Blue)';
-  divError.innerHTML = '';
+  errorInput.innerHTML = '';
 }
