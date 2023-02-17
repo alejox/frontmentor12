@@ -12,10 +12,20 @@ const button = document.querySelector('#submit');
 
 button.addEventListener('click', (e) => {
   e.preventDefault();
-  validateEmpty(firstName.value, firstName, firstNameError, 'First Name');
-  validateEmpty(lastName.value, lastName, lastNameError, 'Last Name');
+  validateEmpty(
+    firstName.value,
+    firstName,
+    firstNameError,
+    'First Name cannot be empty'
+  );
+  validateEmpty(
+    lastName.value,
+    lastName,
+    lastNameError,
+    'Last Name cannot be empty'
+  );
   validateEmail(emailInput.value, emailInput, emailError);
-  validateEmpty(pass.value, pass, passError, 'Password');
+  validateEmpty(pass.value, pass, passError, 'Password cannot be empty');
 });
 
 function validateEmail(valueInput, divInput, divError) {
@@ -39,7 +49,7 @@ function validateEmpty(valueInput, divInput, divError, error) {
 function showError(divInput, divError, error) {
   divInput.style.border = '1px solid var(--Red)';
   divError.innerHTML = `<img class="icon-error" src="images/icon-error.svg" alt="" />
-            <p class="error">${error} cannot be empty</p>`;
+            <p class="error">${error}</p>`;
 }
 
 function hideError(divInput, divError) {
