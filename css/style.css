@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --Red: hsl(0, 100%, 74%);
+  --Green: hsl(154, 59%, 51%);
+  --Green-shadow: hsla(156, 61%, 17%, 0.644);
+  --Blue: hsl(248, 32%, 49%);
+  --Blue-shadow: hsla(249, 10%, 26%, 0.3);
+  --Dark-Blue: hsl(249, 10%, 26%);
+  --Grayish-Blue: hsl(246, 25%, 77%);
+  --white: #ffffff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  background-color: var(--Red);
+  background-image: url(../images/bg-intro-mobile.png);
+  color: var(--white);
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  justify-content: center;
+}
+
+/* ---------------Main---------------- */
+.container {
+  width: 86%;
+  margin: 120px auto;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 3.8rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.info p {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.offer {
+  background-color: var(--Blue);
+  text-align: center;
+  padding: 2.2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 0 var(--Blue-shadow);
+  margin-bottom: 2.4rem;
+}
+
+.offer span {
+  font-weight: 700;
+}
+/* ---------------Form---------------- */
+
+.form-container {
+  background-color: var(--white);
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 0 var(--Blue-shadow);
+}
+
+input {
+  padding: 2rem;
+  border-radius: 4px;
+  border: 1px solid var(--Grayish-Blue);
+  outline: none;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+input[type='submit'] {
+  background-color: var(--Green);
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4px 0 var(--Green-shadow);
+  cursor: pointer;
+}
+
+.error-container {
+  position: relative;
+}
+
+.icon-error {
+  position: absolute;
+  right: 2rem;
+  top: -6.4rem;
+}
+
+.error{
+  color: var(--Red);
+  font-style: italic;
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top:-1.2rem ;
+}
+
+
+
+.terms{
+  color: var(--Grayish-Blue);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.terms a{
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--Red);
+}
+
+/* ---------------Footer---------------- */
+.attribution {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* ---------------Desktop---------------- */
+
+@media (min-width:1120px) {
+  .container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.8rem;
+    align-items: center;
+    width: 78%;
+  }
+  h1, .info p{
+    text-align: left;
+  }
+
+  h1{
+    font-size: 5.4rem;
+    line-height: 6rem;
+  }
+  .form-container{
+    padding: 4rem;
+  }
+  body{
+    background-image: url(../images/bg-intro-desktop.png);
+  }
+}
