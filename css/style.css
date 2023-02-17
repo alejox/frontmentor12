@@ -72,7 +72,6 @@ h1 {
   padding: 2.4rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   border-radius: 1rem;
   box-shadow: 0 8px 0 var(--Blue-shadow);
 }
@@ -84,6 +83,7 @@ input {
   outline: none;
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
+  margin-bottom: 2rem;
 }
 input[type='submit'] {
   background-color: var(--Green);
